@@ -10,13 +10,13 @@ async function bootstrap() {
   const app = await NestFactory.createMicroservice<MicroserviceOptions>(
     AppModule,
     {
-      transport: Transport.TCP,
+      transport: Transport.NATS,
       options: {
-        port: envs.PORT,
+        servers: envs.NATS_SERVERS,
       },
     }
   );
-
+  
   // app.setGlobalPrefix('api');
 
   app.useGlobalPipes(
